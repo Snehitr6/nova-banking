@@ -1,0 +1,476 @@
+ /*
+  ============================================================
+  NOVABANK DASHBOARD
+  App.css
+  ============================================================
+*/
+
+/* This file intentionally contains only app-level utilities.
+   Main dashboard styling is handled by index.css. */
+
+.app-shell {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.main-area {
+  min-height: 100vh;
+  width: 100%;
+  transition: padding-left 0.3s ease;
+}
+
+.dashboard-main {
+  min-height: calc(100vh - 72px);
+  width: 100%;
+  padding: 24px;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.dashboard-main.page-is-loading {
+  opacity: 0.65;
+  transform: translateY(3px);
+}
+
+.page-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   ANALYTICS
+============================================================ */
+
+.analytics-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.analytics-dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  gap: 20px;
+}
+
+.analytics-placeholder {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.analytics-placeholder-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.analytics-placeholder .section-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #6366f1;
+}
+
+.analytics-placeholder h2 {
+  margin: 8px 0 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.analytics-placeholder p {
+  max-width: 620px;
+  margin: 12px 0 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.analytics-placeholder button {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 12px;
+  background: #4f46e5;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.analytics-placeholder button:hover {
+  transform: translateY(-2px);
+  background: #4338ca;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
+}
+
+.analytics-placeholder button.secondary {
+  background: #f1f5f9;
+  color: #334155;
+  box-shadow: none;
+}
+
+.analytics-placeholder button.secondary:hover {
+  background: #e2e8f0;
+}
+
+.analytics-preview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.analytics-preview-card {
+  min-height: 200px;
+  padding: 24px;
+}
+
+.analytics-preview-card > span {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #94a3b8;
+}
+
+.analytics-preview-card > strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 25px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.analytics-bars {
+  height: 105px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.analytics-bars span {
+  flex: 1;
+  min-width: 8px;
+  border-radius: 7px 7px 3px 3px;
+  background: #6366f1;
+  opacity: 0.8;
+  transition:
+    height 0.5s ease,
+    opacity 0.2s ease;
+}
+
+.analytics-bars span:hover {
+  opacity: 1;
+}
+
+.analytics-ring {
+  width: 105px;
+  height: 105px;
+  margin: 20px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at center,
+      white 58%,
+      transparent 59%
+    ),
+    conic-gradient(
+      #6366f1 0deg 113deg,
+      #e2e8f0 113deg 360deg
+    );
+}
+
+.analytics-ring span {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+
+  min-width: 290px;
+  max-width: min(420px, calc(100vw - 32px));
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 13px 14px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 18px 50px rgba(15, 23, 42, 0.16);
+
+  animation:
+    toastIn 0.3s ease both;
+}
+
+.toast-check {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #ecfdf5;
+  color: #059669;
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.toast-copy {
+  min-width: 0;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toast-copy strong {
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.toast-copy span {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.toast > button {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #f1f5f9;
+  color: #64748b;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.toast > button:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.toast-error .toast-check {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.toast-info .toast-check {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================================
+   DESKTOP
+============================================================ */
+
+@media (min-width: 901px) {
+  .main-area.sidebar-expanded {
+    padding-left: 260px;
+  }
+
+  .main-area.sidebar-collapsed {
+    padding-left: 82px;
+  }
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1100px) {
+  .analytics-dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-area.sidebar-expanded,
+  .main-area.sidebar-collapsed {
+    padding-left: 0;
+  }
+
+  .dashboard-main {
+    padding: 18px;
+    padding-bottom: 100px;
+  }
+
+  .analytics-placeholder {
+    min-height: 360px;
+    padding: 30px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 640px) {
+  .dashboard-main {
+    padding: 14px;
+    padding-bottom: 92px;
+  }
+
+  .analytics-placeholder {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .analytics-placeholder h2 {
+    font-size: 22px;
+  }
+
+  .analytics-placeholder p {
+    font-size: 13px;
+  }
+
+  .analytics-placeholder button {
+    width: 100%;
+  }
+
+  .analytics-placeholder .mt-6 {
+    width: 100%;
+  }
+
+  .analytics-preview-card {
+    min-height: 180px;
+    padding: 20px;
+  }
+
+  .toast {
+    left: 14px;
+    right: 14px;
+    bottom: 82px;
+    min-width: 0;
+    width: auto;
+  }
+}
+
+/* ============================================================
+   DARK MODE
+============================================================ */
+
+.dark .analytics-placeholder h2,
+.dark .analytics-preview-card > strong,
+.dark .analytics-ring span {
+  color: #f8fafc;
+}
+
+.dark .analytics-placeholder p {
+  color: #94a3b8;
+}
+
+.dark .analytics-placeholder button.secondary {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.dark .analytics-placeholder button.secondary:hover {
+  background: #334155;
+}
+
+.dark .analytics-ring {
+  background:
+    radial-gradient(
+      circle at center,
+      #0f172a 58%,
+      transparent 59%
+    ),
+    conic-gradient(
+      #818cf8 0deg 113deg,
+      #334155 113deg 360deg
+    );
+}
+
+.dark .toast {
+  border-color: #334155;
+  background: rgba(15, 23, 42, 0.97);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.dark .toast-copy strong {
+  color: #f8fafc;
+}
+
+.dark .toast-copy span {
+  color: #94a3b8;
+}
+
+.dark .toast > button {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+.dark .toast > button:hover {
+  background: #334155;
+  color: #f8fafc;
+}
