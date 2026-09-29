@@ -15302,3 +15302,3923 @@ select:focus {
       none !important;
   }
 }
+/* ============================================================
+   MOBILE SIDEBAR — FINAL FIX
+============================================================ */
+
+@media (max-width: 700px) {
+
+  /* Main page must always use full mobile width */
+  .main-area,
+  .main-area.sidebar-expanded,
+  .main-area.sidebar-collapsed {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .dashboard-main {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Sidebar is hidden until hamburger opens it */
+  .sidebar {
+    display: none !important;
+
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: min(280px, 82vw) !important;
+
+    z-index: 100000 !important;
+
+    transform: translateX(-105%) !important;
+
+    transition:
+      transform 0.28s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      ) !important;
+  }
+
+  /* Sidebar when opened */
+  .sidebar.open {
+    display: flex !important;
+
+    transform:
+      translateX(0) !important;
+  }
+
+  /* If your Sidebar uses a different open class */
+  .sidebar.sidebar-open {
+    display: flex !important;
+
+    transform:
+      translateX(0) !important;
+  }
+
+  /* Backdrop */
+  .sidebar-overlay {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    z-index: 99999 !important;
+
+    background:
+      rgba(
+        5,
+        15,
+        30,
+        0.48
+      ) !important;
+
+    backdrop-filter:
+      blur(3px);
+
+    animation:
+      mobileSidebarBackdrop
+      0.22s
+      ease
+      both;
+  }
+
+  @keyframes mobileSidebarBackdrop {
+
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Header stays above page content */
+  .top-header {
+    position: sticky !important;
+
+    top: 0 !important;
+
+    z-index: 1000 !important;
+
+    width: 100% !important;
+  }
+
+  /* Content never gets pushed by sidebar */
+  .dashboard-main {
+    position: relative;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+
+    padding:
+      16px
+      12px
+      92px !important;
+  }
+}
+
+/* ============================================================
+   MOBILE SIDEBAR INTERNAL ALIGNMENT
+============================================================ */
+
+@media (max-width: 700px) {
+
+  .sidebar {
+    flex-direction: column;
+
+    overflow:
+      hidden auto !important;
+
+    overscroll-behavior:
+      contain;
+  }
+
+  .sidebar-header {
+    flex-shrink: 0;
+  }
+
+  .sidebar-nav {
+    min-width: 0;
+  }
+
+  .sidebar-nav-item,
+  .sidebar-nav-link {
+    min-width: 0;
+  }
+
+  .sidebar-nav-item span,
+  .sidebar-nav-link span {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+
+    flex-shrink: 0;
+  }
+}
+
+/* ============================================================
+   MOBILE NAVIGATION ALWAYS ABOVE CONTENT
+============================================================ */
+
+@media (max-width: 700px) {
+
+  .mobile-bottom-navigation {
+    position: fixed !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+
+    z-index: 99990 !important;
+  }
+}
+/* ============================================================
+   NOVABANK — FINAL MOBILE UI
+   Proper phone sizing + alignment
+============================================================ */
+
+@media (max-width: 700px) {
+
+  /* ==========================================================
+     PAGE FOUNDATION
+  ========================================================== */
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .app-shell {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .main-area,
+  .main-area.sidebar-expanded,
+  .main-area.sidebar-collapsed {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* ==========================================================
+     HEADER
+  ========================================================== */
+
+  .top-header {
+    position: sticky !important;
+    top: 0 !important;
+
+    width: 100% !important;
+    height: 60px !important;
+
+    padding: 0 12px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 8px !important;
+
+    z-index: 1000 !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .sidebar-toggle {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    flex-shrink: 0 !important;
+  }
+
+  .mobile-header-brand {
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 6px !important;
+
+    min-width: 0 !important;
+    flex: 1 !important;
+  }
+
+  .header-brand-icon {
+    width: 29px !important;
+    height: 29px !important;
+    min-width: 29px !important;
+  }
+
+  .mobile-header-brand > span {
+    display: block !important;
+
+    font-size: 11px !important;
+    font-weight: 800 !important;
+
+    white-space: nowrap !important;
+  }
+
+  .header-search {
+    display: none !important;
+  }
+
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 5px !important;
+
+    flex-shrink: 0 !important;
+  }
+
+  .header-icon-button {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+  }
+
+  .header-profile {
+    padding: 0 !important;
+  }
+
+  .header-profile-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+  }
+
+  .header-profile-copy {
+    display: none !important;
+  }
+
+  /* ==========================================================
+     MAIN CONTENT
+  ========================================================== */
+
+  .dashboard-main {
+    width: 100% !important;
+    min-width: 0 !important;
+
+    margin: 0 !important;
+
+    padding:
+      16px
+      12px
+      92px !important;
+
+    overflow-x: hidden !important;
+  }
+
+  .page-transition-wrapper {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* ==========================================================
+     DASHBOARD
+  ========================================================== */
+
+  .banking-dashboard {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    padding:
+      0
+      0
+      15px !important;
+  }
+
+  /* ==========================================================
+     WELCOME
+  ========================================================== */
+
+  .banking-dashboard .dashboard-welcome {
+    width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: flex-start !important;
+
+    gap: 5px !important;
+
+    margin-bottom: 14px !important;
+
+    padding: 0 !important;
+  }
+
+  .banking-dashboard .dashboard-welcome h1 {
+    margin: 0 !important;
+
+    font-size: 21px !important;
+
+    line-height: 1.2 !important;
+
+    font-weight: 800 !important;
+  }
+
+  .banking-dashboard .dashboard-welcome p {
+    margin: 0 !important;
+
+    font-size: 10px !important;
+
+    line-height: 1.45 !important;
+  }
+
+  .banking-dashboard .dashboard-date {
+    width: 100% !important;
+
+    display: flex !important;
+    align-items: flex-start !important;
+
+    font-size: 9px !important;
+  }
+
+  /* ==========================================================
+     DASHBOARD GRID
+  ========================================================== */
+
+  .banking-dashboard .dashboard-grid,
+  .banking-dashboard .main-dashboard-grid {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr !important;
+
+    gap: 12px !important;
+
+    margin: 0 0 12px !important;
+  }
+
+  .banking-dashboard .dashboard-left-column,
+  .banking-dashboard .dashboard-right-column {
+    width: 100% !important;
+    min-width: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 12px !important;
+  }
+
+  /* ==========================================================
+     BALANCE CARD
+  ========================================================== */
+
+  .banking-dashboard .balance-card {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 205px !important;
+
+    padding: 17px !important;
+
+    border-radius: 17px !important;
+
+    overflow: hidden !important;
+  }
+
+  .banking-dashboard .balance-card-top {
+    width: 100% !important;
+
+    display: flex !important;
+
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+
+    gap: 10px !important;
+  }
+
+  .banking-dashboard .balance-label {
+    font-size: 7px !important;
+  }
+
+  .banking-dashboard .balance-card h2 {
+    margin:
+      6px
+      0
+      4px !important;
+
+    font-size: 27px !important;
+
+    line-height: 1 !important;
+
+    letter-spacing: -0.04em !important;
+
+    white-space: nowrap !important;
+  }
+
+  .banking-dashboard .balance-eye {
+    font-size: 7px !important;
+  }
+
+  .banking-dashboard .balance-account-chip {
+    max-width: 105px !important;
+
+    padding:
+      5px
+      7px !important;
+
+    font-size: 6px !important;
+
+    white-space: nowrap !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+  }
+
+  .banking-dashboard .balance-card-middle {
+    width: 100% !important;
+
+    padding-top: 8px !important;
+  }
+
+  .banking-dashboard .balance-card-actions {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 7px !important;
+
+    margin-top: 12px !important;
+  }
+
+  .banking-dashboard
+  .balance-card-actions button {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 32px !important;
+
+    padding:
+      0
+      7px !important;
+
+    font-size: 7px !important;
+  }
+
+  /* ==========================================================
+     ACCOUNT SUMMARY
+  ========================================================== */
+
+  .banking-dashboard .account-summary-card {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    padding: 13px !important;
+
+    border-radius: 15px !important;
+  }
+
+  .banking-dashboard
+  .account-summary-item {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    padding:
+      9px
+      8px !important;
+
+    gap: 8px !important;
+  }
+
+  .banking-dashboard
+  .account-summary-item
+  > div {
+    min-width: 0 !important;
+  }
+
+  .banking-dashboard
+  .account-summary-item
+  strong {
+    font-size: 8px !important;
+  }
+
+  .banking-dashboard
+  .account-summary-item
+  span {
+    font-size: 6px !important;
+  }
+
+  /* ==========================================================
+     QUICK SERVICES
+  ========================================================== */
+
+  .banking-dashboard
+  .quick-services-panel {
+    width: 100% !important;
+
+    padding: 13px !important;
+
+    border-radius: 15px !important;
+  }
+
+  .banking-dashboard
+  .quick-services-panel
+  .section-title-row {
+    margin-bottom: 10px !important;
+  }
+
+  .banking-dashboard
+  .quick-services-grid {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 7px !important;
+  }
+
+  .banking-dashboard
+  .quick-service {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 55px !important;
+
+    padding:
+      7px
+      8px !important;
+
+    border-radius: 10px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 7px !important;
+  }
+
+  .banking-dashboard
+  .quick-service-copy {
+    min-width: 0 !important;
+
+    flex: 1 !important;
+  }
+
+  .banking-dashboard
+  .quick-service-copy strong {
+    display: block !important;
+
+    max-width: 100% !important;
+
+    font-size: 7px !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+
+    white-space: nowrap !important;
+  }
+
+  .banking-dashboard
+  .quick-service-copy small,
+  .banking-dashboard
+  .quick-service-arrow {
+    display: none !important;
+  }
+
+  /* ==========================================================
+     STAT CARDS
+  ========================================================== */
+
+  .dashboard-stats-grid {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 7px !important;
+  }
+
+  .dashboard-stat-card {
+    min-width: 0 !important;
+  }
+
+  .dashboard-stat-card.primary {
+    grid-column: span 2 !important;
+  }
+
+  /* ==========================================================
+     PANELS
+  ========================================================== */
+
+  .dashboard-panel,
+  .full-page-card,
+  .settings-card,
+  .payment-card {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    border-radius: 15px !important;
+  }
+
+  /* ==========================================================
+     TRANSACTIONS
+  ========================================================== */
+
+  .transaction-list,
+  .transactions-list {
+    width: 100% !important;
+
+    min-width: 0 !important;
+  }
+
+  .transaction-item {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    gap: 8px !important;
+  }
+
+  .transaction-item-info {
+    min-width: 0 !important;
+
+    flex: 1 !important;
+  }
+
+  .transaction-item-info h4,
+  .transaction-item-info p {
+    max-width: 100% !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+
+    white-space: nowrap !important;
+  }
+
+  .transaction-item-amount {
+    flex-shrink: 0 !important;
+
+    white-space: nowrap !important;
+  }
+
+  /* ==========================================================
+     MOBILE NAV
+  ========================================================== */
+
+  .mobile-bottom-navigation {
+    position: fixed !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+
+    height: 66px !important;
+
+    z-index: 99999 !important;
+
+    padding:
+      5px
+      7px
+      calc(
+        5px +
+        env(safe-area-inset-bottom)
+      ) !important;
+
+    display: block !important;
+
+    background:
+      var(--surface) !important;
+
+    border-top:
+      1px solid
+      var(--border) !important;
+  }
+
+  .mobile-bottom-nav-inner {
+    width: 100% !important;
+    height: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr)) !important;
+
+    gap: 3px !important;
+  }
+
+  .mobile-bottom-nav-inner > button {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 2px !important;
+
+    padding: 3px !important;
+
+    border: 0 !important;
+
+    border-radius: 9px !important;
+
+    background: transparent !important;
+  }
+
+  /* ==========================================================
+     MOBILE SIDEBAR
+  ========================================================== */
+
+  .sidebar {
+    display: none !important;
+
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width:
+      min(
+        280px,
+        82vw
+      ) !important;
+
+    height: 100vh !important;
+
+    z-index: 100000 !important;
+
+    transform:
+      translateX(-105%) !important;
+
+    transition:
+      transform
+      0.28s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      ) !important;
+  }
+
+  .sidebar.open,
+  .sidebar.sidebar-open {
+    display: flex !important;
+
+    transform:
+      translateX(0) !important;
+  }
+
+  .sidebar-overlay {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    z-index: 99998 !important;
+
+    background:
+      rgba(
+        5,
+        15,
+        30,
+        0.5
+      ) !important;
+
+    backdrop-filter:
+      blur(3px) !important;
+  }
+
+  /* ==========================================================
+     MODALS
+  ========================================================== */
+
+  .modal-overlay,
+  .dashboard-modal-overlay {
+    padding: 10px !important;
+
+    align-items: flex-end !important;
+  }
+
+  .modal,
+  .dashboard-modal {
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    max-height:
+      calc(
+        100vh - 20px
+      ) !important;
+
+    overflow-y: auto !important;
+
+    border-radius:
+      18px
+      18px
+      12px
+      12px !important;
+  }
+
+  /* ==========================================================
+     DROPDOWNS
+  ========================================================== */
+
+  .notification-dropdown,
+  .profile-dropdown {
+    width:
+      calc(100vw - 20px) !important;
+
+    max-width:
+      calc(100vw - 20px) !important;
+
+    right: -3px !important;
+  }
+
+  /* ==========================================================
+     TOAST
+  ========================================================== */
+
+  .toast {
+    left: 10px !important;
+    right: 10px !important;
+
+    bottom: 76px !important;
+
+    width: auto !important;
+
+    min-width: 0 !important;
+
+    max-width: none !important;
+  }
+}
+
+/* ============================================================
+   SMALL PHONES
+============================================================ */
+
+@media (max-width: 380px) {
+
+  .top-header {
+    padding:
+      0
+      9px !important;
+  }
+
+  .mobile-header-brand > span {
+    display: none !important;
+  }
+
+  .header-icon-button {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .header-profile-avatar {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .dashboard-main {
+    padding-left: 9px !important;
+    padding-right: 9px !important;
+  }
+
+  .banking-dashboard
+  .balance-card {
+    min-height: 200px !important;
+
+    padding: 15px !important;
+  }
+
+  .banking-dashboard
+  .balance-card h2 {
+    font-size: 25px !important;
+  }
+
+  .banking-dashboard
+  .quick-services-grid {
+    gap: 5px !important;
+  }
+
+  .banking-dashboard
+  .quick-service {
+    min-height: 52px !important;
+
+    padding:
+      6px !important;
+  }
+}
+/* ============================================================
+   NOVABANK — FINAL ALIGNMENT + RESPONSIVE SYSTEM
+   ADD THIS AT THE VERY BOTTOM OF index.css
+============================================================ */
+
+/* ============================================================
+   GLOBAL
+============================================================ */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================
+   APP SHELL
+============================================================ */
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.main-area {
+  width: calc(
+    100% -
+    var(--sidebar-width)
+  );
+
+  min-width: 0;
+
+  margin-left:
+    var(--sidebar-width);
+
+  transition:
+    width 0.3s ease,
+    margin-left 0.3s ease;
+}
+
+.main-area.sidebar-expanded {
+  width: calc(
+    100% -
+    var(--sidebar-width)
+  );
+
+  margin-left:
+    var(--sidebar-width);
+}
+
+.main-area.sidebar-collapsed {
+  width: calc(
+    100% -
+    var(--sidebar-collapsed)
+  );
+
+  margin-left:
+    var(--sidebar-collapsed);
+}
+
+/* ============================================================
+   SIDEBAR — ACTUAL PROJECT CLASS
+============================================================ */
+
+.bank-sidebar {
+  width:
+    var(--sidebar-width);
+
+  min-width:
+    var(--sidebar-width);
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: 5000;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+}
+
+.bank-sidebar.collapsed {
+  width:
+    var(--sidebar-collapsed);
+
+  min-width:
+    var(--sidebar-collapsed);
+}
+
+/* ============================================================
+   HEADER — ACTUAL PROJECT CLASS
+============================================================ */
+
+.bank-header {
+  position: fixed !important;
+
+  top: 0;
+  right: 0;
+
+  width: calc(
+    100% -
+    var(--sidebar-width)
+  );
+
+  height:
+    var(--header-height);
+
+  z-index: 4000;
+
+  box-sizing: border-box;
+}
+
+.main-area.sidebar-collapsed
+.bank-header {
+  width: calc(
+    100% -
+    var(--sidebar-collapsed)
+  );
+}
+
+/* ============================================================
+   MAIN CONTENT
+============================================================ */
+
+.dashboard-main {
+  width: 100%;
+
+  min-width: 0;
+
+  min-height: 100vh;
+
+  padding-top:
+    var(--header-height);
+
+  overflow-x: clip;
+}
+
+.page-transition-wrapper {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ============================================================
+   DASHBOARD CONTAINER
+============================================================ */
+
+.page-container,
+.banking-dashboard {
+  width: 100%;
+
+  max-width: 1280px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  min-width: 0;
+}
+
+/* ============================================================
+   DASHBOARD HEADER
+============================================================ */
+
+.banking-dashboard
+.dashboard-welcome {
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content:
+    space-between;
+
+  gap: 24px;
+
+  margin-bottom: 18px;
+}
+
+.banking-dashboard
+.dashboard-welcome
+> div:first-child {
+  min-width: 0;
+}
+
+.banking-dashboard
+.dashboard-welcome h1 {
+  margin:
+    4px
+    0
+    5px;
+
+  line-height: 1.12;
+}
+
+.banking-dashboard
+.dashboard-welcome p {
+  margin: 0;
+}
+
+.dashboard-date {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   TOP DASHBOARD GRID
+============================================================ */
+
+.banking-dashboard
+.dashboard-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.65fr)
+    minmax(320px, 0.85fr);
+
+  gap: 14px;
+
+  margin-bottom: 14px;
+}
+
+.banking-dashboard
+.dashboard-grid > * {
+  min-width: 0;
+}
+
+/* ============================================================
+   BALANCE
+============================================================ */
+
+.banking-dashboard
+.balance-column {
+  min-width: 0;
+}
+
+.banking-dashboard
+.balance-card {
+  width: 100%;
+
+  min-width: 0;
+
+  min-height: 252px;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+}
+
+.banking-dashboard
+.balance-card-top {
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content:
+    space-between;
+
+  gap: 15px;
+}
+
+.banking-dashboard
+.balance-card-top
+> div:first-child {
+  min-width: 0;
+}
+
+.banking-dashboard
+.balance-card-middle {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.banking-dashboard
+.balance-card-actions {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 8px;
+}
+
+.banking-dashboard
+.balance-card-actions button {
+  width: 100%;
+
+  min-width: 0;
+}
+
+/* ============================================================
+   ACCOUNT SUMMARY
+============================================================ */
+
+.banking-dashboard
+.account-summary-card {
+  width: 100%;
+
+  min-width: 0;
+
+  min-height: 252px;
+
+  margin: 0;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.banking-dashboard
+.account-summary-list {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.banking-dashboard
+.account-summary-item {
+  width: 100%;
+
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.banking-dashboard
+.account-summary-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.banking-dashboard
+.account-summary-info
+strong,
+.banking-dashboard
+.account-summary-info
+span {
+  max-width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+/* ============================================================
+   QUICK SERVICES
+============================================================ */
+
+.banking-dashboard
+.quick-services-panel {
+  width: 100%;
+
+  min-width: 0;
+
+  margin-bottom: 14px;
+
+  border-radius: 20px;
+}
+
+.banking-dashboard
+.quick-services-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      6,
+      minmax(0, 1fr)
+    );
+
+  gap: 8px;
+}
+
+.banking-dashboard
+.quick-service {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.banking-dashboard
+.quick-service-copy {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.banking-dashboard
+.quick-service-copy
+strong,
+.banking-dashboard
+.quick-service-copy
+small {
+  max-width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+/* ============================================================
+   LOWER DASHBOARD
+============================================================ */
+
+.banking-dashboard
+.main-dashboard-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.45fr)
+    minmax(300px, 0.55fr);
+
+  gap: 14px;
+
+  align-items: start;
+}
+
+.banking-dashboard
+.dashboard-left-column,
+.banking-dashboard
+.dashboard-right-column {
+  width: 100%;
+
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.banking-dashboard
+.dashboard-panel {
+  width: 100%;
+
+  min-width: 0;
+}
+
+/* ============================================================
+   CHARTS
+============================================================ */
+
+.banking-dashboard
+.banking-mini-chart,
+.banking-dashboard
+.spending-section {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.banking-dashboard
+.spending-overview-row {
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content:
+    space-between;
+
+  gap: 15px;
+}
+
+/* ============================================================
+   TRANSACTION LIST
+============================================================ */
+
+.bank-transaction-list {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.bank-transaction {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.bank-transaction-main {
+  min-width: 0;
+
+  flex: 1;
+}
+
+/* ============================================================
+   ALL PAGE CONTAINERS
+============================================================ */
+
+.analytics-page,
+.accounts-page,
+.transactions-page,
+.cards-page,
+.payments-page,
+.settings-page {
+  width: 100%;
+
+  max-width: 1280px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  min-width: 0;
+}
+
+/* ============================================================
+   GENERIC GRIDS
+============================================================ */
+
+.accounts-grid,
+.account-cards-grid,
+.cards-page-grid,
+.cards-grid,
+.card-management-grid {
+  width: 100%;
+
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 14px;
+}
+
+.accounts-grid > *,
+.account-cards-grid > *,
+.cards-page-grid > *,
+.cards-grid > *,
+.card-management-grid > * {
+  min-width: 0;
+}
+
+/* ============================================================
+   PAYMENTS
+============================================================ */
+
+.payment-page-grid,
+.payments-main-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(300px, 0.8fr);
+
+  gap: 14px;
+
+  align-items: start;
+}
+
+.payment-page-grid > *,
+.payments-main-grid > * {
+  min-width: 0;
+}
+
+.payment-options-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 10px;
+}
+
+/* ============================================================
+   SETTINGS
+============================================================ */
+
+.settings-layout {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    220px
+    minmax(0, 1fr);
+
+  gap: 14px;
+
+  align-items: start;
+}
+
+.settings-sidebar,
+.settings-content {
+  width: 100%;
+
+  min-width: 0;
+}
+
+/* ============================================================
+   FORMS
+============================================================ */
+
+.form-grid,
+.profile-form-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 12px;
+}
+
+.form-group {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  min-width: 0;
+}
+
+/* ============================================================
+   TABLES
+============================================================ */
+
+.transaction-table-wrapper {
+  width: 100%;
+
+  max-width: 100%;
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.transaction-table {
+  min-width: 650px;
+}
+
+/* ============================================================
+   MODALS
+============================================================ */
+
+.modal-overlay,
+.dashboard-modal-overlay {
+  z-index: 10000;
+}
+
+.modal,
+.dashboard-modal {
+  max-width: 520px;
+
+  max-height:
+    calc(
+      100vh - 40px
+    );
+
+  overflow-y: auto;
+}
+
+/* ============================================================
+   DESKTOP
+============================================================ */
+
+@media (min-width: 1201px) {
+
+  .dashboard-main {
+    padding:
+      28px
+      28px
+      50px;
+  }
+}
+
+/* ============================================================
+   LAPTOP
+============================================================ */
+
+@media (max-width: 1200px)
+and (min-width: 901px) {
+
+  .dashboard-main {
+    padding:
+      24px
+      20px
+      45px;
+  }
+
+  .banking-dashboard
+  .dashboard-grid {
+    grid-template-columns:
+      minmax(0, 1.25fr)
+      minmax(290px, 0.75fr);
+  }
+
+  .banking-dashboard
+  .quick-services-grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+  }
+
+  .banking-dashboard
+  .main-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-page-grid,
+  .payments-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+
+  .bank-sidebar {
+    display: none;
+  }
+
+  .main-area,
+  .main-area.sidebar-expanded,
+  .main-area.sidebar-collapsed {
+    width: 100% !important;
+
+    margin-left: 0 !important;
+  }
+
+  .bank-header,
+  .main-area.sidebar-collapsed
+  .bank-header {
+    width: 100% !important;
+  }
+
+  .dashboard-main {
+    padding:
+      24px
+      18px
+      90px;
+  }
+
+  .banking-dashboard
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-dashboard
+  .main-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-dashboard
+  .quick-services-grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+  }
+
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-page-grid,
+  .payments-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   MOBILE — 700PX
+============================================================ */
+
+@media (max-width: 700px) {
+
+  :root {
+    --header-height: 60px;
+  }
+
+  /* ----------------------------------------------------------
+     MAIN
+  ---------------------------------------------------------- */
+
+  .main-area,
+  .main-area.sidebar-expanded,
+  .main-area.sidebar-collapsed {
+    width: 100% !important;
+
+    margin-left: 0 !important;
+  }
+
+  .dashboard-main {
+    width: 100% !important;
+
+    min-height: 100vh;
+
+    padding:
+      14px
+      12px
+      90px !important;
+  }
+
+  .page-container,
+  .banking-dashboard,
+  .analytics-page,
+  .accounts-page,
+  .transactions-page,
+  .cards-page,
+  .payments-page,
+  .settings-page {
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* ----------------------------------------------------------
+     HEADER
+  ---------------------------------------------------------- */
+
+  .bank-header {
+    width: 100% !important;
+
+    height: 60px !important;
+
+    padding:
+      0
+      12px !important;
+
+    position: fixed !important;
+
+    top: 0 !important;
+
+    left: 0 !important;
+
+    right: 0 !important;
+
+    z-index: 4000 !important;
+  }
+
+  .header-page-context {
+    min-width: 0;
+  }
+
+  .header-page-context
+  strong {
+    max-width: 180px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .header-center {
+    display: none !important;
+  }
+
+  .header-left {
+    min-width: 0;
+
+    flex: 1;
+  }
+
+  .header-menu-button {
+    display: flex !important;
+
+    width: 34px !important;
+    height: 34px !important;
+
+    min-width: 34px !important;
+
+    flex-shrink: 0 !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+  }
+
+  .header-sidebar-toggle {
+    display: none !important;
+  }
+
+  /* ----------------------------------------------------------
+     MOBILE SIDEBAR
+  ---------------------------------------------------------- */
+
+  .bank-sidebar {
+    display: flex !important;
+
+    width:
+      min(
+        280px,
+        82vw
+      ) !important;
+
+    min-width:
+      min(
+        280px,
+        82vw
+      ) !important;
+
+    height: 100vh !important;
+
+    top: 0 !important;
+
+    left: 0 !important;
+
+    bottom: auto !important;
+
+    z-index: 100000 !important;
+
+    transform:
+      translateX(-110%) !important;
+
+    transition:
+      transform
+      0.28s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      ) !important;
+  }
+
+  .bank-sidebar.open {
+    transform:
+      translateX(0) !important;
+  }
+
+  .bank-sidebar.collapsed {
+    width:
+      min(
+        280px,
+        82vw
+      ) !important;
+
+    min-width:
+      min(
+        280px,
+        82vw
+      ) !important;
+
+    transform:
+      translateX(-110%) !important;
+  }
+
+  .bank-sidebar.open
+  .sidebar-mobile-close {
+    display: flex !important;
+  }
+
+  /* ----------------------------------------------------------
+     SIDEBAR BACKDROP
+  ---------------------------------------------------------- */
+
+  .bank-sidebar.open::after {
+    content: "";
+
+    position: fixed;
+
+    top: 0;
+
+    left:
+      min(
+        280px,
+        82vw
+      );
+
+    right: -100vw;
+
+    bottom: 0;
+
+    background:
+      rgba(
+        4,
+        12,
+        25,
+        0.48
+      );
+
+    z-index: -1;
+
+    pointer-events: none;
+  }
+
+  /* ----------------------------------------------------------
+     WELCOME
+  ---------------------------------------------------------- */
+
+  .banking-dashboard
+  .dashboard-welcome {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 5px;
+
+    margin-bottom: 14px;
+  }
+
+  .banking-dashboard
+  .dashboard-welcome h1 {
+    margin:
+      3px
+      0
+      4px;
+
+    font-size: 22px;
+
+    line-height: 1.15;
+  }
+
+  .banking-dashboard
+  .dashboard-welcome p {
+    font-size: 10px;
+
+    line-height: 1.45;
+  }
+
+  .dashboard-date {
+    width: 100%;
+
+    flex-shrink: 1;
+  }
+
+  /* ----------------------------------------------------------
+     TOP GRID
+  ---------------------------------------------------------- */
+
+  .banking-dashboard
+  .dashboard-grid {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  /* ----------------------------------------------------------
+     BALANCE
+  ---------------------------------------------------------- */
+
+  .banking-dashboard
+  .balance-card {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 205px;
+
+    min-height: 205px;
+
+    padding:
+      17px
+      16px;
+
+    border-radius: 18px;
+  }
+
+  .banking-dashboard
+  .balance-card-top {
+    width: 100%;
+
+    gap: 8px;
+  }
+
+  .banking-dashboard
+  .balance-label {
+    font-size: 6.5px;
+  }
+
+  .banking-dashboard
+  .balance-card h2 {
+    margin:
+      5px
+      0
+      4px;
+
+    font-size: 29px;
+
+    line-height: 1;
+
+    white-space: nowrap;
+  }
+
+  .banking-dashboard
+  .balance-account-chip {
+    max-width: 90px;
+
+    padding:
+      5px
+      7px;
+
+    font-size: 6px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+  .banking-dashboard
+  .balance-card-middle {
+    width: 100%;
+
+    padding-top: 7px;
+  }
+
+  .banking-dashboard
+  .balance-card-actions {
+    position: absolute;
+
+    left: 16px;
+
+    right: 16px;
+
+    bottom: 22px;
+
+    width: auto;
+
+    margin: 0;
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 8px;
+  }
+
+  .banking-dashboard
+  .balance-card-actions button {
+    height: 34px;
+
+    min-height: 34px;
+
+    padding:
+      0
+      7px;
+
+    font-size: 7px;
+  }
+
+  /* ----------------------------------------------------------
+     ACCOUNT SUMMARY
+  ---------------------------------------------------------- */
+
+  .banking-dashboard
+  .account-summary-card {
+    width: 100%;
+
+    min-height: 0;
+
+    padding: 14px;
+
+    border-radius: 16px;
+  }
+
+  .banking-dashboard
+  .account-summary-item {
+    width: 100%;
+
+    padding:
+      9px
+      8px;
+
+    gap: 8px;
+  }
+
+  /* ----------------------------------------------------------
+     QUICK SERVICES
+  ---------------------------------------------------------- */
+
+  .banking-dashboard
+  .quick-services-panel {
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 16px;
+  }
+
+  .banking-dashboard
+  .quick-services-grid {
+    width: 100%;
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 7px;
+  }
+
+  .banking-dashboard
+  .quick-service {
+    min-width: 0;
+
+    min-height: 58px;
+
+    padding:
+      8px;
+
+    gap: 7px;
+  }
+
+  .banking-dashboard
+  .quick-service-copy {
+    min-width: 0;
+  }
+
+  .banking-dashboard
+  .quick-service-copy
+  strong {
+    font-size: 7px;
+  }
+
+  .banking-dashboard
+  .quick-service-copy
+  small,
+  .banking-dashboard
+  .quick-service-arrow {
+    display: none;
+  }
+
+  /* ----------------------------------------------------------
+     LOWER GRID
+  ---------------------------------------------------------- */
+
+  .banking-dashboard
+  .main-dashboard-grid {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .banking-dashboard
+  .dashboard-left-column,
+  .banking-dashboard
+  .dashboard-right-column {
+    width: 100%;
+
+    gap: 12px;
+  }
+
+  /* ----------------------------------------------------------
+     TRANSACTIONS
+  ---------------------------------------------------------- */
+
+  .bank-transaction {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .bank-transaction-main {
+    min-width: 0;
+
+    flex: 1;
+  }
+
+  /* ----------------------------------------------------------
+     STATS
+  ---------------------------------------------------------- */
+
+  .dashboard-stats-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 7px;
+  }
+
+  .dashboard-stat-card.primary {
+    grid-column:
+      span 2;
+  }
+
+  /* ----------------------------------------------------------
+     OTHER PAGES
+  ---------------------------------------------------------- */
+
+  .accounts-grid,
+  .account-cards-grid,
+  .cards-page-grid,
+  .cards-grid,
+  .card-management-grid,
+  .payment-options-grid {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .payment-page-grid,
+  .payments-main-grid {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+  }
+
+  .settings-layout {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .settings-sidebar,
+  .settings-content {
+    width: 100%;
+  }
+
+  .form-grid,
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ----------------------------------------------------------
+     TABLE
+  ---------------------------------------------------------- */
+
+  .transaction-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+  }
+
+  /* ----------------------------------------------------------
+     MODAL
+  ---------------------------------------------------------- */
+
+  .modal-overlay,
+  .dashboard-modal-overlay {
+    padding: 10px;
+
+    align-items: flex-end;
+  }
+
+  .modal,
+  .dashboard-modal {
+    width: 100%;
+
+    max-width: 100%;
+
+    max-height:
+      calc(
+        100vh - 20px
+      );
+
+    border-radius:
+      18px
+      18px
+      12px
+      12px;
+  }
+
+  /* ----------------------------------------------------------
+     MOBILE BOTTOM NAV
+  ---------------------------------------------------------- */
+
+  .mobile-bottom-navigation {
+    position: fixed !important;
+
+    left: 0 !important;
+
+    right: 0 !important;
+
+    bottom: 0 !important;
+
+    width: 100% !important;
+
+    height: 68px !important;
+
+    z-index: 99990 !important;
+
+    padding:
+      5px
+      7px
+      calc(
+        5px +
+        env(
+          safe-area-inset-bottom
+        )
+      ) !important;
+  }
+
+  .mobile-bottom-nav-inner {
+    width: 100%;
+
+    height: 100%;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(
+        5,
+        minmax(0, 1fr)
+      );
+
+    gap: 3px;
+  }
+
+  .mobile-bottom-nav-inner
+  > button {
+    width: 100%;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 2px;
+
+    padding: 3px;
+  }
+
+  /* ----------------------------------------------------------
+     TOAST
+  ---------------------------------------------------------- */
+
+  .toast {
+    left: 10px !important;
+
+    right: 10px !important;
+
+    bottom: 78px !important;
+
+    width: auto !important;
+
+    max-width: none !important;
+
+    min-width: 0 !important;
+  }
+}
+
+/* ============================================================
+   SMALL PHONE
+============================================================ */
+
+@media (max-width: 480px) {
+
+  .dashboard-main {
+    padding-left: 10px !important;
+
+    padding-right: 10px !important;
+  }
+
+  .banking-dashboard
+  .dashboard-welcome h1 {
+    font-size: 21px;
+  }
+
+  .banking-dashboard
+  .balance-card {
+    height: 205px;
+
+    min-height: 205px;
+
+    padding:
+      16px;
+  }
+
+  .banking-dashboard
+  .balance-card h2 {
+    font-size: 27px;
+  }
+
+  .banking-dashboard
+  .quick-services-grid {
+    gap: 6px;
+  }
+
+  .banking-dashboard
+  .quick-service {
+    min-height: 55px;
+
+    padding: 7px;
+  }
+}
+
+/* ============================================================
+   VERY SMALL PHONE
+============================================================ */
+
+@media (max-width: 380px) {
+
+  .bank-header {
+    padding:
+      0
+      9px !important;
+  }
+
+  .dashboard-main {
+    padding-left: 8px !important;
+
+    padding-right: 8px !important;
+  }
+
+  .banking-dashboard
+  .balance-card {
+    height: 200px;
+
+    min-height: 200px;
+
+    padding:
+      14px;
+  }
+
+  .banking-dashboard
+  .balance-card h2 {
+    font-size: 25px;
+  }
+
+  .banking-dashboard
+  .quick-services-grid {
+    gap: 5px;
+  }
+
+  .banking-dashboard
+  .quick-service {
+    min-height: 52px;
+
+    padding: 6px;
+  }
+}
+
+/* ============================================================
+   TOUCH DEVICES
+============================================================ */
+
+@media (hover: none) {
+
+  .dashboard-panel:hover,
+  .quick-service:hover,
+  .bank-transaction:hover,
+  .account-summary-item:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+}
+/* ============================================================
+   NOVABANK — FINAL MOBILE PAGE POSITION + ACCOUNTS FIX
+============================================================ */
+
+/* ------------------------------------------------------------
+   MOBILE HEADER OFFSET
+------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  /*
+    The header is fixed at 64px.
+    Every page must start below it.
+  */
+
+  .dashboard-main {
+    padding-top: 64px !important;
+    box-sizing: border-box !important;
+  }
+
+  .main-area {
+    padding-top: 0 !important;
+  }
+
+  /*
+    Make sure page content never slides underneath
+    the fixed header.
+  */
+
+  .page-container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+
+    padding-top: 20px !important;
+  }
+}
+
+
+/* ============================================================
+   ACCOUNTS PAGE
+============================================================ */
+
+@media (max-width: 700px) {
+
+  /*
+    Accounts page itself needs an additional clean
+    top breathing space.
+  */
+
+  .accounts-page,
+  .accounts-container,
+  .accounts-content {
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    min-width: 0 !important;
+
+    box-sizing: border-box !important;
+
+    margin-top: 0 !important;
+
+    padding-top: 18px !important;
+
+    padding-left: 12px !important;
+
+    padding-right: 12px !important;
+
+    padding-bottom: 105px !important;
+
+    overflow-x: hidden !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     ACCOUNTS PAGE HEADER
+  ---------------------------------------------------------- */
+
+  .accounts-page .page-header,
+  .accounts-page .accounts-header,
+  .accounts-page .dashboard-welcome {
+
+    position: relative !important;
+
+    top: auto !important;
+
+    margin-top: 0 !important;
+
+    padding-top: 0 !important;
+
+    margin-bottom: 18px !important;
+
+    z-index: 1 !important;
+  }
+
+
+  .accounts-page .dashboard-welcome h1 {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 5px !important;
+
+    font-size: 22px !important;
+
+    line-height: 1.15 !important;
+  }
+
+
+  .accounts-page .dashboard-welcome p {
+
+    margin: 0 !important;
+
+    font-size: 8px !important;
+
+    line-height: 1.45 !important;
+
+    max-width: 290px !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     OPEN NEW ACCOUNT BUTTON
+  ---------------------------------------------------------- */
+
+  .accounts-page .accounts-add-button {
+
+    min-height: 34px !important;
+
+    height: 34px !important;
+
+    padding:
+      0 10px !important;
+
+    border-radius: 9px !important;
+
+    font-size: 7px !important;
+
+    white-space: nowrap !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     OVERVIEW
+  ---------------------------------------------------------- */
+
+  .accounts-page .accounts-overview {
+
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr !important;
+
+    gap: 10px !important;
+
+    margin-top: 0 !important;
+
+    margin-bottom: 20px !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     TOTAL BALANCE
+  ---------------------------------------------------------- */
+
+  .accounts-page .accounts-total-card {
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    height: 205px !important;
+
+    min-height: 205px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 18px !important;
+
+    margin: 0 !important;
+
+    border-radius: 17px !important;
+
+    grid-column: 1 / -1 !important;
+  }
+
+
+  .accounts-page .accounts-total-top {
+
+    width: 100% !important;
+
+    display: flex !important;
+
+    align-items: flex-start !important;
+
+    justify-content: space-between !important;
+
+    gap: 10px !important;
+  }
+
+
+  .accounts-page .accounts-total-value {
+
+    margin-top: 6px !important;
+
+    font-size: 29px !important;
+
+    line-height: 1 !important;
+
+    white-space: nowrap !important;
+  }
+
+
+  .accounts-page .accounts-total-icon {
+
+    width: 38px !important;
+
+    height: 38px !important;
+
+    min-width: 38px !important;
+  }
+
+
+  .accounts-page .accounts-total-bottom {
+
+    left: 18px !important;
+
+    right: 18px !important;
+
+    bottom: 15px !important;
+
+    width: auto !important;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 7px !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     AVAILABLE BALANCE + MONTHLY INTEREST
+  ---------------------------------------------------------- */
+
+  .accounts-page .accounts-overview-side {
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+
+    grid-template-rows: none !important;
+
+    gap: 9px !important;
+  }
+
+
+  .accounts-page .account-stat-box {
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 88px !important;
+
+    padding: 13px !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 13px !important;
+  }
+
+
+  .accounts-page .account-stat-box strong {
+
+    font-size: 15px !important;
+
+    white-space: nowrap !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     YOUR ACCOUNTS
+  ---------------------------------------------------------- */
+
+  .accounts-page .accounts-section {
+
+    width: 100% !important;
+
+    margin-top: 0 !important;
+
+    margin-bottom: 20px !important;
+  }
+
+
+  .accounts-page .accounts-list {
+
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr !important;
+
+    gap: 10px !important;
+  }
+
+
+  .accounts-page .account-large-card {
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    box-sizing: border-box !important;
+
+    padding: 13px !important;
+
+    margin: 0 !important;
+
+    border-radius: 14px !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     ACCOUNT CARD
+  ---------------------------------------------------------- */
+
+  .accounts-page .account-card-top {
+
+    width: 100% !important;
+
+    display: flex !important;
+
+    align-items: flex-start !important;
+
+    justify-content: space-between !important;
+
+    gap: 8px !important;
+  }
+
+
+  .accounts-page .account-card-identity {
+
+    min-width: 0 !important;
+
+    flex: 1 !important;
+  }
+
+
+  .accounts-page .account-card-name-row {
+
+    min-width: 0 !important;
+  }
+
+
+  .accounts-page .account-card-name-row h3 {
+
+    max-width: 155px !important;
+
+    font-size: 8px !important;
+
+    white-space: nowrap !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+  }
+
+
+  .accounts-page .account-card-middle {
+
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr) !important;
+
+    gap: 10px !important;
+
+    margin-top: 15px !important;
+  }
+
+
+  .accounts-page .account-number-block,
+  .accounts-page .account-balance-block {
+
+    min-width: 0 !important;
+  }
+
+
+  .accounts-page
+  .account-number-block strong,
+  .accounts-page
+  .account-balance-block strong {
+
+    max-width: 100% !important;
+
+    font-size: 9px !important;
+
+    white-space: nowrap !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+  }
+
+
+  /* ----------------------------------------------------------
+     BOTTOM NAV SAFETY
+  ---------------------------------------------------------- */
+
+  .accounts-page {
+
+    padding-bottom: 110px !important;
+  }
+}
+
+
+/* ============================================================
+   420px AND BELOW
+============================================================ */
+
+@media (max-width: 420px) {
+
+  .dashboard-main {
+
+    padding-top: 64px !important;
+  }
+
+
+  .page-container {
+
+    padding-top: 17px !important;
+  }
+
+
+  .accounts-page,
+  .accounts-container,
+  .accounts-content {
+
+    padding-top: 14px !important;
+
+    padding-left: 10px !important;
+
+    padding-right: 10px !important;
+
+    padding-bottom: 110px !important;
+  }
+
+
+  .accounts-page .dashboard-welcome h1 {
+
+    font-size: 21px !important;
+  }
+
+
+  .accounts-page .accounts-total-card {
+
+    height: 198px !important;
+
+    min-height: 198px !important;
+
+    padding: 16px !important;
+  }
+
+
+  .accounts-page .accounts-total-value {
+
+    font-size: 27px !important;
+  }
+
+
+  .accounts-page .accounts-total-bottom {
+
+    left: 16px !important;
+
+    right: 16px !important;
+
+    bottom: 13px !important;
+  }
+
+
+  .accounts-page .account-stat-box {
+
+    min-height: 84px !important;
+
+    padding: 10px !important;
+  }
+
+
+  .accounts-page .account-stat-box strong {
+
+    font-size: 14px !important;
+  }
+}
+
+
+/* ============================================================
+   360px AND BELOW
+============================================================ */
+
+@media (max-width: 360px) {
+
+  .accounts-page,
+  .accounts-container,
+  .accounts-content {
+
+    padding-left: 8px !important;
+
+    padding-right: 8px !important;
+  }
+
+
+  .accounts-page .accounts-total-card {
+
+    height: 190px !important;
+
+    min-height: 190px !important;
+  }
+
+
+  .accounts-page .accounts-total-value {
+
+    font-size: 25px !important;
+  }
+}
+/* ============================================================
+   NOVABANK — BALANCE CARD FINAL FINAL
+   CLEAN DESKTOP + MOBILE ALIGNMENT
+============================================================ */
+
+/* ============================================================
+   CARD
+============================================================ */
+
+.banking-dashboard .balance-card {
+  position: relative !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+
+  height: 258px !important;
+  min-height: 258px !important;
+
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box !important;
+
+  border-radius: 20px !important;
+
+  color: #fff !important;
+
+  background:
+    radial-gradient(
+      circle at 88% 8%,
+      rgba(255,255,255,.13),
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #123f7b 0%,
+      #1769e8 58%,
+      #2e7dff 100%
+    ) !important;
+
+  box-shadow:
+    0 18px 38px
+    rgba(22,91,200,.18) !important;
+}
+
+
+/* ============================================================
+   BACKGROUND
+============================================================ */
+
+.banking-dashboard
+.balance-card-background {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  z-index: 0 !important;
+
+  pointer-events: none !important;
+
+  opacity: .07 !important;
+}
+
+
+/* ============================================================
+   TOP CONTENT
+============================================================ */
+
+.banking-dashboard
+.balance-card-top {
+
+  position: absolute !important;
+
+  top: 26px !important;
+
+  left: 26px !important;
+  right: 26px !important;
+
+  width: auto !important;
+
+  z-index: 5 !important;
+
+  display: flex !important;
+
+  align-items: flex-start !important;
+
+  justify-content: space-between !important;
+
+  gap: 20px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+}
+
+
+/* ============================================================
+   LEFT CONTENT
+============================================================ */
+
+.banking-dashboard
+.balance-card-top
+> div:first-child {
+
+  min-width: 0 !important;
+
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  align-items: flex-start !important;
+
+  justify-content: flex-start !important;
+}
+
+
+/* ============================================================
+   LABEL
+============================================================ */
+
+.banking-dashboard
+.balance-label {
+
+  display: block !important;
+
+  margin: 0 !important;
+
+  color:
+    rgba(255,255,255,.62) !important;
+
+  font-size: 7px !important;
+
+  font-weight: 800 !important;
+
+  line-height: 1.2 !important;
+
+  letter-spacing: .14em !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* ============================================================
+   BALANCE AMOUNT
+============================================================ */
+
+.banking-dashboard
+.balance-card-top h2 {
+
+  display: block !important;
+
+  margin:
+    7px 0
+    0 !important;
+
+  padding: 0 !important;
+
+  color: #fff !important;
+
+  font-family:
+    "Manrope",
+    "Plus Jakarta Sans",
+    sans-serif !important;
+
+  font-size:
+    clamp(
+      30px,
+      3vw,
+      39px
+    ) !important;
+
+  font-weight: 800 !important;
+
+  line-height: 1 !important;
+
+  letter-spacing: -.045em !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* ============================================================
+   HIDE BALANCE
+   IMPORTANT: THIS MUST STAY BELOW AMOUNT
+============================================================ */
+
+.banking-dashboard
+.balance-eye {
+
+  position: relative !important;
+
+  display: inline-flex !important;
+
+  align-items: center !important;
+
+  justify-content: flex-start !important;
+
+  width: auto !important;
+
+  min-width: 0 !important;
+
+  height: 18px !important;
+
+  min-height: 18px !important;
+
+  margin:
+    6px 0
+    0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  color:
+    rgba(255,255,255,.70) !important;
+
+  font-size: 7px !important;
+
+  line-height: 1 !important;
+
+  gap: 4px !important;
+
+  z-index: 6 !important;
+}
+
+
+/* Icon inside Hide balance */
+
+.banking-dashboard
+.balance-eye svg {
+
+  width: 11px !important;
+
+  height: 11px !important;
+
+  flex-shrink: 0 !important;
+}
+
+
+/* ============================================================
+   SAVINGS CHIP
+============================================================ */
+
+.banking-dashboard
+.balance-account-chip {
+
+  position: relative !important;
+
+  z-index: 6 !important;
+
+  flex-shrink: 0 !important;
+
+  display: inline-flex !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  gap: 5px !important;
+
+  min-height: 31px !important;
+
+  padding:
+    0 10px !important;
+
+  margin: 0 !important;
+
+  border:
+    1px solid
+    rgba(255,255,255,.16) !important;
+
+  border-radius: 9px !important;
+
+  color:
+    rgba(255,255,255,.90) !important;
+
+  background:
+    rgba(255,255,255,.10) !important;
+
+  backdrop-filter:
+    blur(8px) !important;
+
+  font-size: 7px !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* ============================================================
+   MIDDLE INFORMATION
+============================================================ */
+
+.banking-dashboard
+.balance-card-middle {
+
+  position: absolute !important;
+
+  left: 26px !important;
+
+  right: 26px !important;
+
+  bottom: 69px !important;
+
+  z-index: 4 !important;
+
+  width: auto !important;
+
+  min-width: 0 !important;
+
+  display: flex !important;
+
+  align-items: flex-end !important;
+
+  justify-content: flex-start !important;
+
+  gap: 55px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+}
+
+
+/* Each information block */
+
+.banking-dashboard
+.balance-card-middle > div {
+
+  min-width: 0 !important;
+
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  align-items: flex-start !important;
+
+  gap: 4px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+}
+
+
+/* Small labels */
+
+.banking-dashboard
+.balance-card-middle span {
+
+  display: block !important;
+
+  margin: 0 !important;
+
+  color:
+    rgba(255,255,255,.46) !important;
+
+  font-size: 6px !important;
+
+  font-weight: 700 !important;
+
+  line-height: 1.2 !important;
+
+  letter-spacing: .05em !important;
+
+  text-transform: uppercase !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* Values */
+
+.banking-dashboard
+.balance-card-middle strong {
+
+  display: block !important;
+
+  margin: 0 !important;
+
+  color:
+    rgba(255,255,255,.92) !important;
+
+  font-size: 9px !important;
+
+  font-weight: 700 !important;
+
+  line-height: 1.2 !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+============================================================ */
+
+.banking-dashboard
+.balance-card-actions {
+
+  position: absolute !important;
+
+  left: 26px !important;
+
+  right: 26px !important;
+
+  bottom: 19px !important;
+
+  z-index: 7 !important;
+
+  width: auto !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,1fr) !important;
+
+  gap: 9px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+}
+
+
+/* Buttons */
+
+.banking-dashboard
+.balance-card-actions button {
+
+  width: 100% !important;
+
+  height: 35px !important;
+
+  min-height: 35px !important;
+
+  min-width: 0 !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  gap: 5px !important;
+
+  margin: 0 !important;
+
+  padding:
+    0 10px !important;
+
+  box-sizing: border-box !important;
+
+  border:
+    1px solid
+    rgba(255,255,255,.16) !important;
+
+  border-radius: 8px !important;
+
+  color: #fff !important;
+
+  background:
+    rgba(255,255,255,.10) !important;
+
+  font-size: 8px !important;
+
+  font-weight: 700 !important;
+
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+
+  transition:
+    transform .2s ease,
+    background .2s ease !important;
+}
+
+
+.banking-dashboard
+.balance-card-actions button:hover {
+
+  transform:
+    translateY(-2px) !important;
+
+  background:
+    rgba(255,255,255,.18) !important;
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width:700px) {
+
+  .banking-dashboard
+  .balance-card {
+
+    height: 205px !important;
+
+    min-height: 205px !important;
+
+    border-radius: 16px !important;
+  }
+
+
+  /* Top */
+
+  .banking-dashboard
+  .balance-card-top {
+
+    top: 17px !important;
+
+    left: 17px !important;
+
+    right: 17px !important;
+
+    gap: 10px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-label {
+
+    font-size: 5.5px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-top h2 {
+
+    margin-top: 6px !important;
+
+    font-size: 26px !important;
+
+    letter-spacing: -.035em !important;
+  }
+
+
+  /* Hide balance */
+
+  .banking-dashboard
+  .balance-eye {
+
+    height: 16px !important;
+
+    min-height: 16px !important;
+
+    margin-top: 5px !important;
+
+    font-size: 6px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-eye svg {
+
+    width: 9px !important;
+
+    height: 9px !important;
+  }
+
+
+  /* Savings */
+
+  .banking-dashboard
+  .balance-account-chip {
+
+    min-height: 27px !important;
+
+    padding:
+      0 7px !important;
+
+    border-radius: 7px !important;
+
+    font-size: 6px !important;
+  }
+
+
+  /* Middle */
+
+  .banking-dashboard
+  .balance-card-middle {
+
+    left: 17px !important;
+
+    right: 17px !important;
+
+    bottom: 59px !important;
+
+    gap: 28px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-middle span {
+
+    font-size: 5px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-middle strong {
+
+    font-size: 7px !important;
+  }
+
+
+  /* Buttons */
+
+  .banking-dashboard
+  .balance-card-actions {
+
+    left: 17px !important;
+
+    right: 17px !important;
+
+    bottom: 15px !important;
+
+    gap: 6px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-actions button {
+
+    height: 29px !important;
+
+    min-height: 29px !important;
+
+    border-radius: 7px !important;
+
+    font-size: 6px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-actions button svg {
+
+    width: 9px !important;
+
+    height: 9px !important;
+  }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width:420px) {
+
+  .banking-dashboard
+  .balance-card {
+
+    height: 198px !important;
+
+    min-height: 198px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-top {
+
+    top: 15px !important;
+
+    left: 15px !important;
+
+    right: 15px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-top h2 {
+
+    font-size: 24px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-middle {
+
+    left: 15px !important;
+
+    right: 15px !important;
+
+    bottom: 56px !important;
+
+    gap: 22px !important;
+  }
+
+
+  .banking-dashboard
+  .balance-card-actions {
+
+    left: 15px !important;
+
+    right: 15px !important;
+
+    bottom: 13px !important;
+  }
+}
