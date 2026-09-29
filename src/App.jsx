@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -20,14 +21,33 @@ function App() {
   const [activePage, setActivePage] =
     useState("Dashboard");
 
+  const [displayPage, setDisplayPage] =
+    useState("Dashboard");
+
+  /*
+    Desktop:
+    sidebar open
+
+    Mobile:
+    sidebar closed
+  */
   const [sidebarOpen, setSidebarOpen] =
-    useState(true);
+    useState(() => {
+      if (
+        typeof window ===
+        "undefined"
+      ) {
+        return true;
+      }
+
+      return window.innerWidth > 700;
+    });
 
   const [pageTransition, setPageTransition] =
     useState(false);
 
-  const [displayPage, setDisplayPage] =
-    useState("Dashboard");
+  const navigationTimer =
+    useRef(null);
 
   const { toast } = useBanking();
 
@@ -40,86 +60,154 @@ function App() {
       return;
     }
 
+    /*
+      Same page
+    */
     if (page === activePage) {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
 
+      /*
+        Always close mobile sidebar
+        when selecting a page.
+      */
+      if (
+        window.innerWidth <= 700
+      ) {
+        setSidebarOpen(false);
+      }
+
       return;
     }
 
-    /* Start exit animation */
-    setPageTransition(true);
+    /*
+      Clear previous navigation timer
+      to prevent multiple rapid transitions.
+    */
+    if (
+      navigationTimer.current
+    ) {
+      window.clearTimeout(
+        navigationTimer.current
+      );
+    }
 
     /*
-      Wait for the exit animation before replacing
-      the page content.
+      Close sidebar on mobile.
     */
-    window.setTimeout(() => {
-      setActivePage(page);
-      setDisplayPage(page);
+    if (
+      window.innerWidth <= 700
+    ) {
+      setSidebarOpen(false);
+    }
 
-      window.scrollTo({
-        top: 0,
-        behavior: "instant",
-      });
+    /*
+      Start exit animation.
+    */
+    setPageTransition(true);
 
-      /*
-        Allow the new page to animate in.
-      */
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          setPageTransition(false);
+    navigationTimer.current =
+      window.setTimeout(() => {
+        setActivePage(page);
+        setDisplayPage(page);
+
+        window.scrollTo({
+          top: 0,
+          behavior: "instant",
         });
-      });
-    }, 220);
+
+        /*
+          Allow browser to paint
+          new page before entrance.
+        */
+        window.requestAnimationFrame(
+          () => {
+            window.requestAnimationFrame(
+              () => {
+                setPageTransition(
+                  false
+                );
+              }
+            );
+          }
+        );
+      }, 180);
   };
 
   /* =========================================================
-     KEEP DISPLAY PAGE IN SYNC
+     CLEAN NAVIGATION TIMER
   ========================================================= */
 
   useEffect(() => {
-    setDisplayPage(activePage);
-  }, [activePage]);
+    return () => {
+      if (
+        navigationTimer.current
+      ) {
+        window.clearTimeout(
+          navigationTimer.current
+        );
+      }
+    };
+  }, []);
 
   /* =========================================================
-     GLOBAL NAVIGATION EVENTS
+     GLOBAL PAGE EVENTS
   ========================================================= */
 
   useEffect(() => {
-    const events = {
-      "navigate-dashboard": "Dashboard",
-      "navigate-accounts": "Accounts",
+    const navigationEvents = {
+      "navigate-dashboard":
+        "Dashboard",
+
+      "navigate-accounts":
+        "Accounts",
+
       "navigate-transactions":
         "Transactions",
-      "navigate-cards": "Cards",
-      "navigate-payments": "Payments",
-      "navigate-settings": "Settings",
-      "navigate-analytics": "Analytics",
+
+      "navigate-cards":
+        "Cards",
+
+      "navigate-payments":
+        "Payments",
+
+      "navigate-settings":
+        "Settings",
+
+      "navigate-analytics":
+        "Analytics",
     };
 
-    const handlers = {};
+    const handlers = [];
 
-    Object.entries(events).forEach(
+    Object.entries(
+      navigationEvents
+    ).forEach(
       ([eventName, page]) => {
         const handler = () => {
           navigateTo(page);
         };
 
-        handlers[eventName] = handler;
-
         window.addEventListener(
           eventName,
           handler
         );
+
+        handlers.push([
+          eventName,
+          handler,
+        ]);
       }
     );
 
     return () => {
-      Object.entries(handlers).forEach(
-        ([eventName, handler]) => {
+      handlers.forEach(
+        ([
+          eventName,
+          handler,
+        ]) => {
           window.removeEventListener(
             eventName,
             handler
@@ -130,16 +218,60 @@ function App() {
   }, [activePage]);
 
   /* =========================================================
-     ESCAPE — MOBILE SIDEBAR
+     RESPONSIVE SIDEBAR
   ========================================================= */
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleResize = () => {
+      /*
+        Mobile
+      */
       if (
-        event.key === "Escape" &&
-        window.innerWidth <= 900
+        window.innerWidth <= 700
       ) {
         setSidebarOpen(false);
+
+        return;
+      }
+
+      /*
+        Desktop
+      */
+      setSidebarOpen(true);
+    };
+
+    window.addEventListener(
+      "resize",
+      handleResize
+    );
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
+    };
+  }, []);
+
+  /* =========================================================
+     ESCAPE
+  ========================================================= */
+
+  useEffect(() => {
+    const handleKeyDown = (
+      event
+    ) => {
+      if (
+        event.key === "Escape"
+      ) {
+        /*
+          Close mobile sidebar.
+        */
+        if (
+          window.innerWidth <= 700
+        ) {
+          setSidebarOpen(false);
+        }
       }
     };
 
@@ -157,7 +289,7 @@ function App() {
   }, []);
 
   /* =========================================================
-     PAGE CONTENT
+     PAGE RENDER
   ========================================================= */
 
   const renderPage = () => {
@@ -183,6 +315,9 @@ function App() {
       case "Analytics":
         return (
           <div className="page-container analytics-page">
+
+            {/* PAGE HEADER */}
+
             <div className="dashboard-welcome">
               <div>
                 <span className="page-eyebrow">
@@ -191,24 +326,35 @@ function App() {
 
                 <h1>
                   Financial{" "}
-                  <span>Analytics</span>
+                  <span>
+                    Analytics
+                  </span>
                 </h1>
 
                 <p>
-                  Detailed insights into your
-                  spending, income and savings.
+                  Detailed insights into
+                  your spending, income
+                  and savings.
                 </p>
               </div>
             </div>
 
+            {/* ANALYTICS */}
+
             <div className="analytics-dashboard">
+
+              {/* MAIN CARD */}
+
               <div className="dashboard-panel analytics-placeholder">
+
                 <div className="analytics-placeholder-icon">
-                  <span>✦</span>
+                  <span>
+                    ✦
+                  </span>
                 </div>
 
                 <span className="section-eyebrow">
-                  COMING SOON
+                  FINANCIAL INSIGHTS
                 </span>
 
                 <h2>
@@ -216,25 +362,32 @@ function App() {
                 </h2>
 
                 <p>
-                  Your detailed financial analytics
-                  workspace is being prepared. Soon
-                  you will be able to monitor spending
-                  patterns, savings, income and
-                  financial trends here.
+                  Monitor your spending
+                  patterns, savings,
+                  income and financial
+                  trends from one place.
                 </p>
 
                 <button
                   type="button"
                   onClick={() =>
-                    navigateTo("Dashboard")
+                    navigateTo(
+                      "Dashboard"
+                    )
                   }
                 >
                   Back to Dashboard
                 </button>
               </div>
 
+              {/* PREVIEW */}
+
               <div className="analytics-preview-grid">
+
+                {/* SPENDING */}
+
                 <div className="dashboard-panel analytics-preview-card">
+
                   <span>
                     MONTHLY SPENDING
                   </span>
@@ -269,7 +422,10 @@ function App() {
                   </div>
                 </div>
 
+                {/* SAVINGS */}
+
                 <div className="dashboard-panel analytics-preview-card">
+
                   <span>
                     SAVINGS RATE
                   </span>
@@ -284,6 +440,7 @@ function App() {
                     </span>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -294,17 +451,30 @@ function App() {
     }
   };
 
+  /* =========================================================
+     APP
+  ========================================================= */
+
   return (
     <div className="app-shell">
+
       {/* =====================================================
           SIDEBAR
       ===================================================== */}
 
       <Sidebar
-        activePage={activePage}
-        setActivePage={navigateTo}
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
+        activePage={
+          activePage
+        }
+        setActivePage={
+          navigateTo
+        }
+        sidebarOpen={
+          sidebarOpen
+        }
+        setSidebarOpen={
+          setSidebarOpen
+        }
       />
 
       {/* =====================================================
@@ -318,15 +488,22 @@ function App() {
             : "sidebar-collapsed"
         }`}
       >
+
+        {/* HEADER */}
+
         <Header
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-          setActivePage={navigateTo}
+          sidebarOpen={
+            sidebarOpen
+          }
+          setSidebarOpen={
+            setSidebarOpen
+          }
+          setActivePage={
+            navigateTo
+          }
         />
 
-        {/* ===================================================
-            PAGE CONTENT
-        =================================================== */}
+        {/* PAGE */}
 
         <main
           className={`dashboard-main ${
@@ -349,12 +526,16 @@ function App() {
       </div>
 
       {/* =====================================================
-          MOBILE NAVIGATION
+          MOBILE NAV
       ===================================================== */}
 
       <MobileNav
-        activePage={activePage}
-        setActivePage={navigateTo}
+        activePage={
+          activePage
+        }
+        setActivePage={
+          navigateTo
+        }
       />
 
       {/* =====================================================
@@ -367,18 +548,22 @@ function App() {
           role="status"
         >
           <div className="toast-check">
-            {toast.type === "info"
+            {toast.type ===
+            "info"
               ? "i"
-              : toast.type === "error"
+              : toast.type ===
+                "error"
               ? "!"
               : "✓"}
           </div>
 
           <div className="toast-copy">
             <strong>
-              {toast.type === "info"
+              {toast.type ===
+              "info"
                 ? "NovaBank"
-                : toast.type === "error"
+                : toast.type ===
+                  "error"
                 ? "Action required"
                 : "Success"}
             </strong>
@@ -390,7 +575,8 @@ function App() {
 
           <button
             type="button"
-            onClick={() => {
+            aria-label="Close notification"
+            onClick={() =>
               window.dispatchEvent(
                 new KeyboardEvent(
                   "keydown",
@@ -398,9 +584,8 @@ function App() {
                     key: "Escape",
                   }
                 )
-              );
-            }}
-            aria-label="Close notification"
+              )
+            }
           >
             ×
           </button>
